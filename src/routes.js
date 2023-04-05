@@ -6,6 +6,9 @@ const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
 const Accordion = React.lazy(() => import('./views/base/accordion/Accordion'))
 const User = React.lazy(() => import('./views/user/User'))
+const UserEdit = React.lazy(() => import('./views/user/UserEdit'))
+const UserView = React.lazy(() => import('./views/user/UserView'))
+const NewUser = React.lazy(() => import('./views/user/NewUser'))
 
 // const Breadcrumbs = React.lazy(() => import('./views/base/breadcrumbs/Breadcrumbs'))
 // const Cards = React.lazy(() => import('./views/base/cards/Cards'))
@@ -22,10 +25,9 @@ const User = React.lazy(() => import('./views/user/User'))
 // const Tooltips = React.lazy(() => import('./views/base/tooltips/Tooltips'))
 
 // // Buttons
-
-const Buttons = React.lazy(() => import('./views/buttons/buttons/Buttons'))
-const ButtonGroups = React.lazy(() => import('./views/buttons/button-groups/ButtonGroups'))
-const Dropdowns = React.lazy(() => import('./views/buttons/dropdowns/Dropdowns'))
+// const Buttons = React.lazy(() => import('./views/buttons/buttons/Buttons'))
+// const ButtonGroups = React.lazy(() => import('./views/buttons/button-groups/ButtonGroups'))
+// const Dropdowns = React.lazy(() => import('./views/buttons/dropdowns/Dropdowns'))
 
 // //Forms
 // const ChecksRadios = React.lazy(() => import('./views/forms/checks-radios/ChecksRadios'))
@@ -53,12 +55,15 @@ const Dropdowns = React.lazy(() => import('./views/buttons/dropdowns/Dropdowns')
 // const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
 const routes = [
-  { path: '/', exact: true, name: 'Home' },
+  // { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
-  { path: '/user', name: 'User', element: Colors },
+  // { path: '/user', name: 'User', element: Colors },
   { path: '/stage', name: 'Stage', element: Typography },
   { path: '/steps', name: 'Steps', element: Accordion },
-  // { path: '/user', name: 'User', element: User },
+  { path: '/user', name: 'User', element: User },
+  { path: '/user/user-edit', name: 'UserEdit', element: UserEdit },
+  { path: '/user/user-view', name: 'Userdetails', element: UserView },
+  { path: '/user/new-user', name: 'Add User', element: NewUser },
 
   // { path: '/theme', name: 'Theme', element: Colors, exact: true },
   // // { path: '/theme/colors', name: 'Colors', element: Colors },

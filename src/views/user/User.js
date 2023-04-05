@@ -4,9 +4,16 @@ import {
   CButton,
   CCard,
   CCardHeader,
+  CCol,
+  CDropdown,
+  CDropdownItem,
+  CDropdownMenu,
+  CDropdownToggle,
   CFormCheck,
   CHeader,
   CHeaderText,
+  CProgress,
+  CRow,
   CTable,
   CTableBody,
   CTableDataCell,
@@ -24,138 +31,151 @@ import avatar3 from 'src/assets/images/avatars/3.jpg'
 import avatar4 from 'src/assets/images/avatars/4.jpg'
 import avatar5 from 'src/assets/images/avatars/5.jpg'
 import avatar6 from 'src/assets/images/avatars/6.jpg'
-import { cilAirplay, cilPlus } from '@coreui/icons'
+import { cilMoodGood, cilOptions, cilPencil, cilPlus, cilTrash } from '@coreui/icons'
 
 const User = () => {
   const sidebarShow = useSelector((state) => state.sidebarShow)
   const navigate = useNavigate()
-  const Admin = [
+
+  const User = [
     {
       id: 1,
       name: 'Karan',
-      title: 'profile_password_edit',
-      image: avatar1,
-      status: 'success',
+      gmail: 'karan@gmail.com',
+      hcp: -34.5,
+      gender: 'Male',
+      country: 'India',
+      role: 'Player',
+      status: <CAvatar src={avatar1} status="success" />,
     },
     {
       id: 2,
       name: 'John',
-      title: 'transition_access',
-      image: avatar2,
-      status: 'danger',
+      gmail: 'john@gmail.com',
+      hcp: -12.23,
+      gender: 'Male',
+      country: 'Germany',
+      role: 'Student',
+      status: <CAvatar src={avatar3} status="success" />,
     },
     {
       id: 3,
-      name: 'Deo',
-      title: 'transition_delete',
-      image: avatar3,
-      status: 'success',
+      name: 'Jenny',
+      gmail: 'Jenny@gmail.com',
+      hcp: -50.2,
+      gender: 'Female',
+      country: 'UK',
+      role: 'Player',
+      status: <CAvatar src={avatar2} status="danger" />,
     },
     {
       id: 4,
-      name: 'Jenny',
-      title: 'transition_show',
-      image: avatar4,
-      status: 'success',
+      name: 'Deo',
+      gmail: 'deo@gmail.com',
+      hcp: -34.5,
+      gender: 'Male',
+      country: 'USA',
+      role: 'Player',
+      status: <CAvatar src={avatar6} status="danger" />,
     },
     {
       id: 5,
-      name: 'Ram',
-      title: 'transition_create',
-      image: avatar5,
-      status: 'success',
+      name: 'Raj',
+      gmail: 'raj@gmail.com',
+      hcp: -11.5,
+      gender: 'Male',
+      country: 'India',
+      role: 'Player',
+      status: <CAvatar src={avatar3} status="success" />,
     },
     {
       id: 6,
-      name: 'Raj',
-      title: 'stock_access',
-      image: avatar6,
-      status: 'danger',
+      name: 'Ram',
+      gmail: 'ram@gmail.com',
+      hcp: 20.2,
+      gender: 'Male',
+      country: 'India',
+      role: 'Player',
+      status: <CAvatar src={avatar4} status="success" />,
     },
     {
       id: 7,
-      name: 'Deo',
-      title: 'transition_delete',
-      image: avatar2,
-      status: 'success',
-    },
-    {
-      id: 8,
-      name: 'Jenny',
-      title: 'transition_show',
-      image: avatar1,
-      status: 'danger',
-    },
-    {
-      id: 9,
-      name: 'Ram',
-      title: 'transition_create',
-      image: avatar3,
-      status: 'success',
+      name: 'Raman',
+      gmail: 'raman@gmail.com',
+      hcp: -30.5,
+      gender: 'Male',
+      country: 'India',
+      role: 'Player',
+      status: <CAvatar src={avatar5} status="danger" />,
     },
   ]
+
   return (
     <>
-      <CCard className="mb-4 text-center">
-        <CCardHeader className="fs-4 text-start">
-          <CHeader className="bg-light">
-            <CHeaderText>UserList</CHeaderText>
-            <CHeaderText>
-              <CButton onClick={() => navigate('/new-user')}>
-                <CIcon icon={cilPlus} /> New User
-              </CButton>
-            </CHeaderText>
-          </CHeader>
-        </CCardHeader>
-        <CTable>
-          <CTableHead color="light">
-            <CTableRow>
-              <CTableHeaderCell scope="col"></CTableHeaderCell>
-              <CTableHeaderCell scope="col">id</CTableHeaderCell>
-              <CTableHeaderCell scope="col">Name</CTableHeaderCell>
-              <CTableHeaderCell scope="col">Title</CTableHeaderCell>
-              <CTableHeaderCell scope="col">Action</CTableHeaderCell>
-            </CTableRow>
-          </CTableHead>
-          <CTableBody>
-            {Admin.map((item, index) => {
-              return (
-                <CTableRow key={index}>
-                  <CTableHeaderCell>
-                    <CFormCheck id="flexCheckDefault" />
-                  </CTableHeaderCell>
-                  <CTableHeaderCell scope="row">{item.id}</CTableHeaderCell>
-                  <CTableDataCell className="d-flex text-center justify-content-center">
-                    {' '}
-                    <CAvatar src={item.image} status={item.status} />
-                    <p className="w-25 mx-1">{item.name}</p>
-                  </CTableDataCell>
-                  <CTableDataCell>{item.title}</CTableDataCell>
-                  <CTableDataCell className="gap-2">
-                    <CButton
-                      color="primary"
-                      className="mx-1"
-                      onClick={() => navigate('/user-view')}
-                    >
-                      <CIcon icon={cilAirplay} />
-                    </CButton>
-                    <CButton
-                      color="info"
-                      className="mx-1 text-light"
-                      onClick={() => navigate('/user-edit')}
-                    >
-                      Edit
-                    </CButton>
-                    <CButton color="danger" className="mx-1 text-light">
-                      Delete
-                    </CButton>
-                  </CTableDataCell>
+      <CRow>
+        <CCol>
+          <CCard>
+            <CCardHeader className="fs-4 text-start">
+              {/* <CHeaderText> Users</CHeaderText>
+              <CHeaderText>
+                <CButton>Add New</CButton>
+              </CHeaderText> */}
+              <CHeader>
+                <CHeaderText>UserList</CHeaderText>
+                <CHeaderText>
+                  <CButton onClick={() => navigate('new-user')}>
+                    <CIcon icon={cilPlus} /> New User
+                  </CButton>
+                </CHeaderText>
+              </CHeader>
+            </CCardHeader>
+            <CTable align="middle" className="mb-0 border" hover responsive>
+              <CTableHead color="light">
+                <CTableRow>
+                  <CTableHeaderCell>id</CTableHeaderCell>
+                  <CTableHeaderCell>Name</CTableHeaderCell>
+                  <CTableHeaderCell>Email</CTableHeaderCell>
+                  <CTableHeaderCell>HCP</CTableHeaderCell>
+                  <CTableHeaderCell>Gender</CTableHeaderCell>
+                  <CTableHeaderCell>Country</CTableHeaderCell>
+                  <CTableHeaderCell>Role</CTableHeaderCell>
+                  <CTableHeaderCell>Status</CTableHeaderCell>
+                  <CTableHeaderCell>Action</CTableHeaderCell>
                 </CTableRow>
-              )
-            })}
-          </CTableBody>
-        </CTable>
-      </CCard>
+              </CTableHead>
+              <CTableBody>
+                {User.map((item, index) => {
+                  return (
+                    <>
+                      <CTableRow v-for="item in tableItems" key={index}>
+                        <CTableDataCell>{item.id}</CTableDataCell>
+                        <CTableDataCell className="text-start ">{item.name}</CTableDataCell>
+                        <CTableDataCell>{item.gmail}</CTableDataCell>
+                        <CTableDataCell className="text-start ">{item.hcp}</CTableDataCell>
+                        <CTableDataCell>{item.gender}</CTableDataCell>
+                        <CTableDataCell>{item.country}</CTableDataCell>
+                        <CTableDataCell>{item.role}</CTableDataCell>
+                        <CTableDataCell>{item.status}</CTableDataCell>
+                        <CTableDataCell className="d-flex gap-2">
+                          <CButton color="info" onClick={() => navigate('user-view')}>
+                            <CIcon icon={cilMoodGood} />
+                          </CButton>
+                          <CButton color="secondary" onClick={() => navigate('user-edit')}>
+                            <CIcon icon={cilPencil} />
+                          </CButton>
+                          <CButton color="danger">
+                            <CIcon icon={cilTrash} />
+                          </CButton>
+                        </CTableDataCell>
+                      </CTableRow>
+                    </>
+                  )
+                })}
+              </CTableBody>
+            </CTable>
+          </CCard>
+        </CCol>
+      </CRow>
     </>
   )
 }
