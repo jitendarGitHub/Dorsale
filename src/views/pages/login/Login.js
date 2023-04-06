@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import 'react-phone-number-input/style.css'
+import '../login/login.css'
 import Input from 'react-phone-number-input/input'
 import { Bounce, Flip, Slide, ToastContainer, Zoom, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -21,70 +22,48 @@ import {
 import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilPhone } from '@coreui/icons'
 import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux'
+import { login, login2 } from 'src/reducer/Action'
 
 const Login = () => {
   const navigate = useNavigate()
-
-  // const handleSubmit = (event) => {
-  //   const form = event.currentTarget
-
-  //   if (form.checkValidity() === false) {
-  //     event.preventDefault()
-  //     event.stopPropagation()
-  //     if (value.length < 10 && value.length > 14) {
-  //       alert('Enter validate number!')
-  //       setValidated(false)
-  //       console.log('dfsjkfhdsjkfdsfdsf', value.length)
-  //     }
-  //   } else {
-  //     setValidated(true)
-  //     navigate('../dashboard')
-  //   }
-  // }
-  // const [password, setpassword] = useState('')
-  // const [phone, setphone] = useState('')
+  const dispatch = useDispatch()
 
   const [state, setState] = useState({
     phone: '',
     password: '',
   })
-  // const [phone, setphone] = useState('')
-  // const [passwords, setpasswords] = useState('')
-  // const Logins = () => {
-  //   console.log(phone, passwords)
+
+  // useEffect(() => {
   //   axios
-  //     .post('https://regres.in/api/login', { phone: phone, password: password })
+  //     .post('http://16.170.10.154/api/users/login')
   //     .then((result) => {
-  //       console.log(result)
-  //     }).
-  // }
-  useEffect(() => {
-    axios
-      .post('http://16.170.10.154/api/users/login')
-      .then((result) => {
-        toast('API', result.data)
-      })
-      // .catch((result) => toast.error('login Failed'))
-      .catch((result) => console.log('API', result.data))
-  })
+  //       toast('API', result.data)
+  //     })
+  //     // .catch((result) => toast.error('login Failed'))
+  //     .catch((result) => console.log('API', result.data))
+  // })
 
   const validate = (e) => {
     e.preventDefault()
+    var regex = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/
     if (state.phone.length == 0) {
       toast.error('Enter Phone number!')
     } else if (state.phone.length < 12 || state.phone.length > 18) {
       toast.error('Enter valid Phone number!')
     } else if (state.password.length == 0) {
-      toast('Password must be Required')
+      toast.error('Password must be Required')
     } else if (state.password.length < 8 || state.password.length > 14) {
-      toast('password length must be 8 tp 14')
+      toast.error('password length must be 8 tp 14')
     } else {
       toast.success('Login Successful', { autoClose: [1000] })
+      dispatch(login(state))
     }
   }
+
   const handleChange = (e) => {
-    // console.log('e--', e.target.name, e.target.value)
     setState({ ...state, [e.target.name]: e.target.value })
+    // console.log('e--', e.target.name, e.target.value)
   }
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
@@ -108,8 +87,8 @@ const Login = () => {
                         className="form-control"
                         value={state.phone}
                         onChange={handleChange}
-                        maxLength={20}
-                        type="text"
+                        maxLength={12}
+                        type="number"
                       />
                     </CInputGroup>
                     <CInputGroup className="mb-3 mt-3">

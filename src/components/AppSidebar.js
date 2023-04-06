@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import {
+  CButton,
   CSidebar,
   CSidebarBrand,
   CSidebarHeader,
@@ -20,7 +21,6 @@ import 'simplebar/dist/simplebar.min.css'
 
 // sidebar nav config
 import navigation from '../_nav'
-
 const AppSidebar = () => {
   const dispatch = useDispatch()
   const unfoldable = useSelector((state) => state.sidebarUnfoldable)
@@ -47,7 +47,7 @@ const AppSidebar = () => {
       </CSidebarNav>
       <CSidebarToggler
         className="d-none d-lg-flex"
-        onClick={() => dispatch({ type: 'set', sidebarUnfoldable: !unfoldable })}
+        onClick={() => dispatch({ type: 'set', unfoldable: true })}
       />
     </CSidebar>
   )
