@@ -46,10 +46,11 @@ const Login = () => {
 
   const validate = (e) => {
     e.preventDefault()
+
     var regex = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/
     if (state.phone.length == 0) {
       toast.error('Enter Phone number!')
-    } else if (state.phone.length < 12 || state.phone.length > 18) {
+    } else if (state.phone.length < 10 || state.phone.length > 14) {
       toast.error('Enter valid Phone number!')
     } else if (state.password.length == 0) {
       toast.error('Password must be Required')
@@ -61,10 +62,23 @@ const Login = () => {
     }
   }
 
+  // const validation = (e) => {
+  //   const validate = /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g;
+  //   return validate.test(str);
+
+  // }
+
   const handleChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value })
     // console.log('e--', e.target.name, e.target.value)
   }
+
+  function telephoneCheck(str) {
+    var patt = new RegExp(/^\+?1?\s*?\(?\d{3}(?:\)|[-|\s])?\s*?\d{3}[-|\s]?\d{4}$/)
+    alert('hello')
+    return patt.test(str)
+  }
+
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
       <CContainer>

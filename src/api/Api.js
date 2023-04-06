@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { toast } from 'react-toastify'
 
-export const Api = (payload) => {
+export const api = (payload) => {
   login: {
     return axios
       .post(`${process.env.REACT_APP_API_URL}/users/login`, payload)
