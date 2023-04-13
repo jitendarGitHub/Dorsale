@@ -39,17 +39,40 @@ const _nav = [
     to: '/user',
     icon: <CIcon icon={cilUser} customClassName="nav-icon" />,
   },
+  // {
+  //   component: CNavItem,
+  //   name: 'Stage',
+  //   to: '/stage',
+  //   icon: <CIcon icon={cilGolf} customClassName="nav-icon" />,
+  // },
+  // {
+  //   component: CNavItem,
+  //   name: 'Steps',
+  //   to: '/steps',
+  //   icon: <CIcon icon={cilSortAscending} customClassName="nav-icon" />,
+  // },
   {
-    component: CNavItem,
+    component: CNavGroup,
     name: 'Stage',
     to: '/stage',
-    icon: <CIcon icon={cilGolf} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavItem,
-    name: 'Steps',
-    to: '/steps',
-    icon: <CIcon icon={cilSortAscending} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilPuzzle} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'Step1',
+        to: '/stage/step1',
+      },
+      {
+        component: CNavItem,
+        name: 'Step2',
+        to: '/stage/step2',
+      },
+      {
+        component: CNavItem,
+        name: 'Step3',
+        to: '/stage/step3',
+      },
+    ],
   },
 
   // {

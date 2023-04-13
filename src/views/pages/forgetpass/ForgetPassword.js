@@ -14,28 +14,45 @@ import {
   CRow,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-import { cilArrowLeft, cilEnvelopeOpen, cilLockLocked, cilUser } from '@coreui/icons'
+import { cilArrowLeft, cilEnvelopeOpen, cilLockLocked } from '@coreui/icons'
+import { ToastContainer, toast, Flip } from 'react-toastify'
 
 const ForgetPassword = () => {
-  const [validated, setValidated] = useState(false)
+  const [validated, setValidated] = useState({
+    email: '',
+    password: '',
+    cpassword: '',
+  })
+  const { email, password, cpassword } = validated
   const navigate = useNavigate()
   const handleSubmit = (event) => {
-    const form = event.currentTarget
-    if (form.checkValidity() === false) {
-      event.preventDefault()
-      event.stopPropagation()
-      alert('Check your Email or password')
-    } else {
-      setValidated(true)
-      setValidated(() => navigate('/'))
-    }
+    event.preventDefault()
+    if (password !== cpassword) {
+      toast.error('password and confirm password doesn`t match')
+    } else toast('good!')
   }
 
-  const [password, setpassword] = useState('')
-  const [cpassword, setcpassword] = useState('')
+  const handleChange = (e) => {
+    setValidated({ ...validated, [e.target.name]: e.target.value })
+    // console.log('e--', e.target.name, e.target.value)
+  }
 
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHove
+        theme="dark"
+        limit={1}
+        transition={Flip}
+      />
       <CContainer>
         <p className=" text-center fs-4" onClick={() => navigate('/')}>
           <CIcon icon={cilArrowLeft} className="mx-2" />
@@ -46,21 +63,14 @@ const ForgetPassword = () => {
             <CCardGroup>
               <CCard className="p-4">
                 <CCardBody>
-                  <CForm noValidate validated={validated} onSubmit={handleSubmit}>
+                  <CForm onSubmit={handleSubmit}>
                     <h1>Reset Password</h1>
                     <p className="text-dark fw-bold">Your Email</p>
                     <CInputGroup className="mb-3">
                       <CInputGroupText>
                         <CIcon icon={cilEnvelopeOpen} />
                       </CInputGroupText>
-                      <CFormInput
-                        type="email"
-                        placeholder="Email"
-                        aria-describedby="inputGroupPrependFeedback"
-                        feedbackValid="Please choose a Email."
-                        id="validationCustomEmail"
-                        required
-                      />
+                      <CFormInput type="email" placeholder="Email" required />
                     </CInputGroup>
                     <p className="text-dark fw-bold mt-4">Your Password</p>
                     <CInputGroup className="mb-3">
@@ -69,13 +79,10 @@ const ForgetPassword = () => {
                       </CInputGroupText>
                       <CFormInput
                         type="password"
-                        value={password}
-                        onChange={(e) => console.log(setpassword(e.target.value))}
+                        name="password"
+                        value={validated.password}
+                        onChange={handleChange}
                         placeholder="Password"
-                        aria-describedby="inputGroupPrependFeedback"
-                        feedbackValid="Please choose a pasword."
-                        id="validationCustomPassword"
-                        required
                       />
                     </CInputGroup>
                     <p className="text-dark fw-bold">Confirm Password</p>
@@ -85,13 +92,10 @@ const ForgetPassword = () => {
                       </CInputGroupText>
                       <CFormInput
                         type="password"
-                        value={cpassword}
-                        onChange={(e) => console.log(setcpassword(e.target.value))}
+                        name="cpassword"
+                        value={validated.cpassword}
+                        onChange={handleChange}
                         placeholder="Confirm Password"
-                        aria-describedby="inputGroupPrependFeedback"
-                        feedbackValid="Please choose a pasword."
-                        id="validationCustomPassword"
-                        required
                       />
                     </CInputGroup>
                     <CRow>

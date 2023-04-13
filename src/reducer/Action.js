@@ -1,6 +1,4 @@
-// import { API } from 'src/api/Api'
-
-import { Api, api } from 'src/api/Api'
+import { API } from 'src/apiService'
 
 // const initialState = {
 //   sidebarShow: true,
@@ -17,10 +15,10 @@ import { Api, api } from 'src/api/Api'
 // }
 
 export const login = (data) => {
-  // console.log('Action called', data)
+  console.log('Action called', data)
   return {
     type: 'LOGIN_USER',
-    // data: api.login,
+    // data: data,
     data: data,
   }
 }

@@ -24,6 +24,7 @@ import { cilLockLocked, cilPhone } from '@coreui/icons'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { login, login2 } from 'src/reducer/Action'
+import { API } from 'src/apiService'
 
 const Login = () => {
   const navigate = useNavigate()
@@ -32,51 +33,32 @@ const Login = () => {
   const [state, setState] = useState({
     phone: '',
     password: '',
+    role: 'admin',
   })
-
-  // useEffect(() => {
-  //   axios
-  //     .post('http://16.170.10.154/api/users/login')
-  //     .then((result) => {
-  //       toast('API', result.data)
-  //     })
-  //     // .catch((result) => toast.error('login Failed'))
-  //     .catch((result) => console.log('API', result.data))
-  // })
 
   const validate = (e) => {
     e.preventDefault()
 
-    var regex = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/
     if (state.phone.length == 0) {
       toast.error('Enter Phone number!')
-    } else if (state.phone.length < 10 || state.phone.length > 14) {
+    } else if (state.phone.length < 6 || state.phone.length > 14) {
       toast.error('Enter valid Phone number!')
     } else if (state.password.length == 0) {
       toast.error('Password must be Required')
     } else if (state.password.length < 8 || state.password.length > 14) {
-      toast.error('password length must be 8 tp 14')
+      toast.error('password length must be 8 to 14')
     } else {
-      toast.success('Login Successful', { autoClose: [1000] })
-      dispatch(login(state))
+      const data = {
+        phone: state.phone,
+        password: state.password,
+        role: 'admin',
+      }
+      API.login(data)
     }
   }
-
-  // const validation = (e) => {
-  //   const validate = /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g;
-  //   return validate.test(str);
-
-  // }
-
   const handleChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value })
     // console.log('e--', e.target.name, e.target.value)
-  }
-
-  function telephoneCheck(str) {
-    var patt = new RegExp(/^\+?1?\s*?\(?\d{3}(?:\)|[-|\s])?\s*?\d{3}[-|\s]?\d{4}$/)
-    alert('hello')
-    return patt.test(str)
   }
 
   return (
@@ -143,14 +125,14 @@ const Login = () => {
                           className="px-0"
                           onClick={() => navigate('/forgetpass')}
                         >
-                          Forgot password?
+                          <span>Forget password?</span>
                         </CButton>
                       </CCol>
                     </CRow>
                   </CForm>
                 </CCardBody>
               </CCard>
-              <CCard className="bg-light text-center justify-content-center">
+              <CCard className="bg-white text-center justify-content-center">
                 <h1 className="fw-bold text-success">DORSALE</h1>
               </CCard>
             </CCardGroup>

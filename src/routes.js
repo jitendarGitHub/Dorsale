@@ -10,12 +10,12 @@ const UserEdit = React.lazy(() => import('./views/user/UserEdit'))
 const UserView = React.lazy(() => import('./views/user/UserView'))
 const NewUser = React.lazy(() => import('./views/user/NewUser'))
 
-// const Breadcrumbs = React.lazy(() => import('./views/base/breadcrumbs/Breadcrumbs'))
-// const Cards = React.lazy(() => import('./views/base/cards/Cards'))
-// const Carousels = React.lazy(() => import('./views/base/carousels/Carousels'))
-// const Collapses = React.lazy(() => import('./views/base/collapses/Collapses'))
-// const ListGroups = React.lazy(() => import('./views/base/list-groups/ListGroups'))
-// const Navs = React.lazy(() => import('./views/base/navs/Navs'))
+const Breadcrumbs = React.lazy(() => import('./views/base/breadcrumbs/Breadcrumbs'))
+const Cards = React.lazy(() => import('./views/base/cards/Cards'))
+const Carousels = React.lazy(() => import('./views/base/carousels/Carousels'))
+const Collapses = React.lazy(() => import('./views/base/collapses/Collapses'))
+const ListGroups = React.lazy(() => import('./views/base/list-groups/ListGroups'))
+const Navs = React.lazy(() => import('./views/base/navs/Navs'))
 // const Paginations = React.lazy(() => import('./views/base/paginations/Paginations'))
 // const Placeholders = React.lazy(() => import('./views/base/placeholders/Placeholders'))
 // const Popovers = React.lazy(() => import('./views/base/popovers/Popovers'))
@@ -64,6 +64,9 @@ const routes = [
   { path: '/user/user-edit', name: 'UserEdit', element: UserEdit },
   { path: '/user/user-view', name: 'Userdetails', element: UserView },
   { path: '/user/new-user', name: 'Add User', element: NewUser },
+  { path: '/stage/step1', name: 'step1' },
+  { path: '/stage/step2', name: 'step2' },
+  { path: '/stage/step3', name: 'step3' },
 
   // { path: '/theme', name: 'Theme', element: Colors, exact: true },
   // // { path: '/theme/colors', name: 'Colors', element: Colors },
