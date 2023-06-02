@@ -18,7 +18,7 @@ instance.interceptors.request.use(function (Config) {
 })
 
 console.log('kdjksdkssd', Config.LOGIN)
-// GET_API 'https://jsonplaceholder.typicode.com/todos/1
+
 //POST _API 'https://dummyjson.com/products/add'
 export const API = {
   login: (payload) => {
